@@ -3,6 +3,7 @@ package com.marketplace.mercatus.product.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "products")
@@ -16,5 +17,10 @@ public class Product {
     private String description;
     private BigDecimal price;
     private String imageUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    @JsonBackReference
+    private Category category;
 }
 
